@@ -1,6 +1,12 @@
 #!/usr/bin/env python
 # coding: utf-8
 
+# In[47]:
+
+
+get_ipython().system('jupyter nbconvert mech_office.ipynb --to script')
+
+
 # In[10]:
 
 
@@ -80,13 +86,13 @@ channel_id = "C04UNBSBRJT"
 channel_id_notice = "C04VCJWTVFE"
 
 
-# In[45]:
+# In[48]:
 
 
 for post in parsed_posts:
     new_post = f"<{post['href']}|*{post['title']}*>\n\n{post['content']}"
     prev_post = ""
-    filename = f"./{post['pid']}.txt"
+    filename = f"./mech_office_posts/{post['pid']}.txt"
     if os.path.exists(filename):
         with open(filename, "r") as f:
             prev_post = f.read()
