@@ -1,10 +1,9 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[47]:
+# In[1]:
 
 
-get_ipython().system('jupyter nbconvert mech_office.ipynb --to script')
 
 
 # In[10]:
@@ -89,6 +88,8 @@ channel_id_notice = "C04VCJWTVFE"
 # In[48]:
 
 
+changed = 0
+not_changed = 0
 for post in parsed_posts:
     new_post = f"<{post['href']}|*{post['title']}*>\n\n{post['content']}"
     prev_post = ""
@@ -100,19 +101,33 @@ for post in parsed_posts:
         f.write(new_post)
     try:
         if new_post != prev_post:
-            result = client.chat_postMessage(
-                channel=channel_id,
-                text=f"{post['pid']} changed"
-            )
+            # result = client.chat_postMessage(
+            #     channel=channel_id,
+            #     text=f"{post['pid']} changed"
+            # )
+            changed += 1
             result = client.chat_postMessage(
                 channel=channel_id_notice,
                 text=new_post
             )
         else:
-            result = client.chat_postMessage(
-                channel=channel_id,
-                text=f"{post['pid']} not changed"
-            )
+            # result = client.chat_postMessage(
+            #     channel=channel_id,
+            #     text=f"{post['pid']} not changed"
+            # )
+            not_changed += 1
     except SlackApiError as e:
         print(f"Error: {e}")
+
+
+# In[ ]:
+
+
+try:
+    result = client.chat_postMessage(
+        channel=channel_id,
+        text=f"機械系事務室お知らせ確認しました 変更あり={changed} 変更なし={not_changed}"
+    )
+except SlackApiError as e:
+    print(f"Error: {e}")
 

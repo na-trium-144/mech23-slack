@@ -1,0 +1,5 @@
+python-dotenv
+slack-bolt
+requests
+pytz
+beautifulsoup4
