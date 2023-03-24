@@ -12,8 +12,9 @@ slackアプリ
 ## 個別
 * app.py
     * メンションやスラッシュコマンドに反応する
-* gcal-to-slack.py
+* ~~gcal-to-slack.py~~
     * https://github.com/jasonsnell/gcal-to-slack
     * googleカレンダーの予定をslackに送る
+    * 現在使ってない
 * mech_office.ipynb
     * スクレイピングしてお知らせをとってくる
