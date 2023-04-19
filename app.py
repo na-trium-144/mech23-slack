@@ -3,7 +3,7 @@ import os
 from slack_bolt import App
 from slack_bolt.adapter.socket_mode import SocketModeHandler
 from slack_sdk.errors import SlackApiError
-
+import time
 from dotenv import load_dotenv
 load_dotenv()
 
@@ -24,6 +24,7 @@ def invite_all_impl(channel_id, say):
     except SlackApiError as e:
         print(f"Error: {e}")
     for m in member_list['members']:
+        time.sleep(60/50)
         print(f"invite {m['id']}: {m['name']}")
         try:
             app.client.conversations_invite(channel=channel_id, users=[m['id']])
