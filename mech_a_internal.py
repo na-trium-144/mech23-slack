@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[16]:
+# In[ ]:
 
 
 
@@ -97,19 +97,19 @@ for post in parsed_posts:
     if os.path.exists(filename):
         with open(filename, "r") as f:
             prev_post = f.read()
-    with open(filename, "w") as f:
-        f.write(new_post)
     try:
         if new_post != prev_post:
             # result = client.chat_postMessage(
             #     channel=channel_id,
             #     text=f"{post['pid']} changed"
             # )
-            changed += 1
             result = client.chat_postMessage(
                 channel=channel_id_notice,
                 text=new_post
             )
+            changed += 1
+            with open(filename, "w") as f:
+                f.write(new_post)
         else:
             # result = client.chat_postMessage(
             #     channel=channel_id,

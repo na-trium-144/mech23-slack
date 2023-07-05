@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[1]:
+# In[2]:
 
 
 
@@ -97,8 +97,6 @@ for post in parsed_posts:
     if os.path.exists(filename):
         with open(filename, "r") as f:
             prev_post = f.read()
-    with open(filename, "w") as f:
-        f.write(new_post)
     try:
         if new_post != prev_post:
             # result = client.chat_postMessage(
@@ -110,6 +108,8 @@ for post in parsed_posts:
                 channel=channel_id_notice,
                 text=new_post
             )
+            with open(filename, "w") as f:
+                f.write(new_post)
         else:
             # result = client.chat_postMessage(
             #     channel=channel_id,
